@@ -1,25 +1,25 @@
 
 # Online Quiz Application API
 
-A simple backend API for creating, managing, and taking quizzes — built with Node.js, Express, and MongoDB (Mongoose).
+## A simple backend API for creating, managing, and taking quizzes — built with Node.js, Express, and MongoDB (Mongoose).
 --------------------------------------------------
 
-🚀 Features
+## 🚀 Features
 
-🎯 Core Functionality
+### 🎯 Core Functionality
 - Create a quiz with a title
 - Add questions to a quiz
 - Fetch all questions for a quiz (without revealing correct answers)
 - Submit answers and get a total score
 
-🧩 Tech Stack
+### 🧩 Tech Stack
 - Node.js with Express.js
 - MongoDB with Mongoose ODM
 - dotenv for environment configuration
 
 --------------------------------------------------
 
-📁 Project Structure
+## 📁 Project Structure
 ```
 quizapplicationapi/
 ├── controllers/
@@ -38,41 +38,54 @@ quizapplicationapi/
 ```
 --------------------------------------------------
 
-⚙️ Setup Instructions
+## Setup Instructions
 
 1️⃣ Clone the Repository
+```
 $ https://github.com/vikram-choudhary03/quizapplicationapis.git
 $ cd quizapplicationapi
+```
 
 2️⃣ Install Dependencies
+```
 $ npm install
+```
 
 3️⃣ Create a .env File
+```
 DB_USERNAME=yourMongoUsername
 DB_PASSWORD=yourMongoPassword
 PORT=3000
+```
 
 4️⃣ Start the Server
+```
 $ node index.js
+```
 Server will run at http://localhost:3000
 
 --------------------------------------------------
 
-🧠 API Endpoints
+## API Endpoints
 
 1️⃣ Create a Quiz
 POST /quiz
 
+
 Request Body:
+```
 {
   "title": "General Knowledge Quiz"
 }
+```
 
 Response:
+```
 {
   "msg": "quiz is created with given title",
   "quizId": "6700e2fa56a4b3..."
 }
+```
 
 --------------------------------------------------
 
@@ -80,16 +93,20 @@ Response:
 POST /quiz/:id/questions
 
 Request Body:
+```
 {
   "text": "What is the capital of France?",
   "options": ["Paris", "Rome", "Berlin", "Madrid"],
   "correctOpt": 0
 }
+```
 
 Response:
+```
 {
   "msg": "Question is inserted"
 }
+```
 
 --------------------------------------------------
 
@@ -99,6 +116,7 @@ GET /quiz/:id
 Returns all questions for a quiz without including the correct answer field.
 
 Example Response:
+```
 {
   "QuestionsList": [
     {
@@ -108,6 +126,7 @@ Example Response:
     }
   ]
 }
+```
 
 --------------------------------------------------
 
@@ -115,19 +134,23 @@ Example Response:
 POST /quiz/:id/submit
 
 Request Body:
+```
 {
   "answers": [
     { "questionId": "6700e4d8...", "selectedOpt": 0 },
     { "questionId": "6700e4e0...", "selectedOpt": 2 }
   ]
 }
+```
 
 Response:
+```
 {
   "totalQuestions": 2,
   "score": 1,
   "msg": "You scored 1/2"
 }
+```
 
 
 
