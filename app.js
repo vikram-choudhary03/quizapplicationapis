@@ -17,7 +17,7 @@ mongoose
 
 
 
-app.use("/quiz" , quizRoutes) ; 
+app.use("/api" , quizRoutes) ; 
 
 
 module.exports = app; 

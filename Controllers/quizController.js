@@ -52,8 +52,7 @@ async function submitAnswers(req, res) {
 
     //fetch all question for the given quiz
     const questions = await Question.find({ quizId: id });
-    console.log(questions) ; 
-    console.log(answers);
+  
     if (!questions.length) {
       return res.status(404).json({ err: "No questions found for this quiz" });
     }
@@ -65,7 +64,7 @@ async function submitAnswers(req, res) {
     }
 
     let score = 0;
-    console.log(map) ; 
+   
     for (const ans of answers) {
       if (ans.selectedOpt === map.get(ans.questionId)) {
         score++;
@@ -85,4 +84,31 @@ async function submitAnswers(req, res) {
 }
 
 
-module.exports = {submitAnswers , createQuiz , fetchQuestions}
+// Controller to get all quizzes
+const getAllQuizzes = async (req, res) => {
+  try {
+    // Fetch all quizzes
+    const quizzes = await Quiz.find().select("title questions"); // only select title & questions array
+
+    if(!quizzes.length){
+      return res.status(400).json({err : "NO quizzes found"})
+    }
+    // Transform response: include totalQuestions instead of full question IDs
+    const quizList = quizzes.map(q => ({
+      id: q._id,
+      title: q.title,
+      totalQuestions: q.questions.length
+    }));
+
+    return res.status(200).json({
+      quizzes: quizList
+    });
+  } catch (err) {
+    return res.status(500).json({
+      err: err.message
+    });
+  }
+};
+
+
+module.exports = {submitAnswers , createQuiz , fetchQuestions, getAllQuizzes}
