@@ -1,36 +1,30 @@
-#Online Quiz Application API
+```text
+# Online Quiz Application API
 
 A simple backend API for creating, managing, and taking quizzes — built with Node.js, Express, and MongoDB (Mongoose).
+--------------------------------------------------
 
-This project implements all the core features required by the assignment and follows clean, modular design principles.
+🚀 Features
 
+🎯 Core Functionality
+- Create a quiz with a title
+- Add questions to a quiz
+- Fetch all questions for a quiz (without revealing correct answers)
+- Submit answers and get a total score
 
-##Features
+🧩 Tech Stack
+- Node.js with Express.js
+- MongoDB with Mongoose ODM
+- dotenv for environment configuration
 
-###Core Functionality
+--------------------------------------------------
 
--Create a quiz with a title
--Add questions to a quiz
--Fetch all questions for a quiz (without revealing correct answers)
--Submit answers and get a total score
-
-
-###Tech Stack
-
--Node.js with Express.js
--MongoDB with Mongoose ODM
--dotenv for environment configuration
-
-
-#Project Structure
-
+📁 Project Structure
 ```
 quizapplicationapi/
 ├── controllers/
 │   └── quizController.js      
-|   └── questionsController.js  
-├── middlewares/
-    └── validation.js 
+│   └── questionsController.js      
 ├── models/
 │   ├── quizSchema.js          # Quiz model
 │   └── questionSchema.js      # Question model
@@ -38,39 +32,102 @@ quizapplicationapi/
 │   └── quizRoutes.js          # API route definitions
 ├── app.js                     
 ├── index.js                  # Entry point to start server
-├── .env                       
+├── .env.example               # Environment variables
 ├── package.json
 └── README.md
 ```
+--------------------------------------------------
 
-
-#Setup Instructions
+⚙️ Setup Instructions
 
 1️⃣ Clone the Repository
-```
-git clone https://github.com/<your-username>/quizapplicationapi.git
-cd quizapplicationapi
-```
+$ https://github.com/vikram-choudhary03/quizapplicationapis.git
+$ cd quizapplicationapi
 
 2️⃣ Install Dependencies
-```
-npm install
-```
+$ npm install
 
 3️⃣ Create a .env File
-```
-DB_USERNAME=<your-mongodb-username>
-DB_PASSWORD=<your-mongodb-password>
+DB_USERNAME=yourMongoUsername
+DB_PASSWORD=yourMongoPassword
 PORT=3000
-```
 
 4️⃣ Start the Server
-```
-node index.js
-```
+$ node index.js
+Server will run at http://localhost:3000
 
+--------------------------------------------------
 
-➡️ The server will run at: http://localhost:3000
+🧠 API Endpoints
+
+1️⃣ Create a Quiz
+POST /quiz
+
+Request Body:
+{
+  "title": "General Knowledge Quiz"
+}
+
+Response:
+{
+  "msg": "quiz is created with given title",
+  "quizId": "6700e2fa56a4b3..."
+}
+
+--------------------------------------------------
+
+2️⃣ Add Question to a Quiz
+POST /quiz/:id/questions
+
+Request Body:
+{
+  "text": "What is the capital of France?",
+  "options": ["Paris", "Rome", "Berlin", "Madrid"],
+  "correctOpt": 0
+}
+
+Response:
+{
+  "msg": "Question is inserted"
+}
+
+--------------------------------------------------
+
+3️⃣ Get All Questions for a Quiz
+GET /quiz/:id
+
+Returns all questions for a quiz without including the correct answer field.
+
+Example Response:
+{
+  "QuestionsList": [
+    {
+      "_id": "6700e4d8...",
+      "text": "What is the capital of France?",
+      "options": ["Paris", "Rome", "Berlin", "Madrid"]
+    }
+  ]
+}
+
+--------------------------------------------------
+
+4️⃣ Submit Answers & Get Score
+POST /quiz/:id/submit
+
+Request Body:
+{
+  "answers": [
+    { "questionId": "6700e4d8...", "selectedOpt": 0 },
+    { "questionId": "6700e4e0...", "selectedOpt": 2 }
+  ]
+}
+
+Response:
+{
+  "totalQuestions": 2,
+  "score": 1,
+  "msg": "You scored 1/2"
+}
 
 
 
