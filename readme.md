@@ -1,7 +1,7 @@
 
 # Online Quiz Application API
 
-### A simple backend API for creating, managing, and taking quizzes — built with Node.js, Express, and MongoDB (Mongoose).
+A simple backend API for creating, managing, and taking quizzes — built with Node.js, Express, and MongoDB (Mongoose).
 
 
 ## 🚀 Features
