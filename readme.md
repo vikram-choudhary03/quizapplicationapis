@@ -118,13 +118,22 @@ Returns all questions for a quiz without including the correct answer field.
 Example Response:
 ```
 {
-  "QuestionsList": [
-    {
-      "_id": "6700e4d8...",
-      "text": "What is the capital of France?",
-      "options": ["Paris", "Rome", "Berlin", "Madrid"]
-    }
-  ]
+    "quizId": "68e239b5602e5acb64da66fc",
+    "title": "Fruite Knowledge",
+    "questions": [
+        {
+            "_id": "68e242c8602e5acb64da6700",
+            "text": "wht is the colour of the mango",
+            "options": [
+                "red",
+                "yellow",
+                "green",
+                "blue"
+            ],
+            "quizId": "68e239b5602e5acb64da66fc",
+            "__v": 0
+        },
+    ]
 }
 ```
 
